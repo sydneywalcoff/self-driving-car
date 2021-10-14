@@ -8,6 +8,7 @@ interface AutonomousCar {
 
 interface AutonomousCarProps {
     isRunning?: boolean;
+    steeringControl: Steering;
 }
 
 interface Events {
@@ -25,8 +26,10 @@ interface Steering extends Control {
 // classes
 class Car implements AutonomousCar {
     isRunning;
+    steeringControl;
     constructor(props: AutonomousCarProps) {
-        this.isRunning = props.isRunning
+        this.isRunning = props.isRunning;
+        this.steeringControl = props.steeringControl;
     }
     respond(events:Events) {
         if(!this.isRunning) {
@@ -48,5 +51,5 @@ class SteeringControl implements Steering {
 // execution
 const steering = new SteeringControl();
 steering.turn('right');
-const autonomousCar = new Car({isRunning: false});
+const autonomousCar = new Car({isRunning: false, steeringControl: steering});
 autonomousCar.respond(getObstacleEvents());
