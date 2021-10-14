@@ -8,11 +8,21 @@ class Car {
     }
     respond(events) {
         if (!this.isRunning) {
-            return console.log('the car is off');
+            return console.log('The car is off');
         }
         return;
     }
 }
+class SteeringControl {
+    execute(command) {
+        console.log(`Executing: ${command}`);
+    }
+    turn(direction) {
+        this.execute('turn ' + direction);
+    }
+}
 // execution
+const steering = new SteeringControl();
+steering.turn('right');
 const autonomousCar = new Car({ isRunning: false });
 autonomousCar.respond(computer_vision_1.getObstacleEvents());
