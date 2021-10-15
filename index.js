@@ -5,12 +5,23 @@ const computer_vision_1 = require("./computer-vision");
 class Car {
     constructor(props) {
         this.isRunning = props.isRunning;
+        this.steeringControl = props.steeringControl;
     }
     respond(events) {
         if (!this.isRunning) {
             return console.log('The car is off');
         }
-        return;
+        Object.keys(events).forEach(eventKey => {
+            if (!eventKey) {
+                return;
+            }
+            if (events[eventKey] && eventKey === 'ObstacleLeft') {
+                this.steeringControl.turn('right');
+            }
+            if (events[eventKey] && eventKey === 'ObstacleRight') {
+                this.steeringControl.turn('left');
+            }
+        });
     }
 }
 class SteeringControl {
@@ -23,6 +34,6 @@ class SteeringControl {
 }
 // execution
 const steering = new SteeringControl();
-steering.turn('right');
-const autonomousCar = new Car({ isRunning: false });
+const autonomousCar = new Car({ isRunning: true, steeringControl: steering });
+// console.log(getObstacleEvents())
 autonomousCar.respond(computer_vision_1.getObstacleEvents());
