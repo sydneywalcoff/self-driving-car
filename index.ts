@@ -61,5 +61,5 @@ class SteeringControl implements Steering {
 // execution
 const steering = new SteeringControl();
 const autonomousCar = new Car({isRunning: true, steeringControl: steering});
-// console.log(getObstacleEvents())
+
 autonomousCar.respond(getObstacleEvents());
