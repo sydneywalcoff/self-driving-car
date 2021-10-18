@@ -35,5 +35,5 @@ class SteeringControl {
 // execution
 const steering = new SteeringControl();
 const autonomousCar = new Car({ isRunning: true, steeringControl: steering });
-// console.log(getObstacleEvents())
-autonomousCar.respond(computer_vision_1.getObstacleEvents());
+// autonomousCar.respond(getObstacleEvents());
+computer_vision_1.getObstacleEvents();
